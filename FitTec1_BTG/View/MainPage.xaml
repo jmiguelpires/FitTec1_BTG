@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FitTec1_BTG.MainPage"
+             BackgroundColor="White"
+             x:Name="mainPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <Image Source="btg_logo.png" HorizontalOptions="Center" HeightRequest="100" WidthRequest="250" Margin="20"/>
+
+            <Grid ColumnDefinitions="*,*">
+                <Label  Grid.Column="0" Text="Lista de clientes" TextColor="{DynamicResource AzulBTG}" Margin="20,20,0,0" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Start" />
+                <Button Grid.Column="1"  Text="CADASTRAR CLIENTE" HorizontalOptions="End"  Margin="0,0,20,10" Command="{Binding CadastrarClienteCommand}"/>
+            </Grid>
+
+            <Border  Margin="20,0,20,0" BackgroundColor="DarkGray" Stroke="Transparent" >
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+
+                <!--Lista de Clientes-->
+                <CollectionView ItemsSource="{Binding ListaClientes}" HeightRequest="500" >
+                    <CollectionView.EmptyView>
+                        <Label Text="Nenhum cliente cadastrado." HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Gray" FontSize="Large" />
+                    </CollectionView.EmptyView>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BackgroundColor="LightGray" Stroke="Transparent" Margin="10">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="10" />
+                                </Border.StrokeShape>
+
+                                <Grid RowDefinitions="auto,auto,auto,auto" ColumnDefinitions="*,auto,auto" Margin="5,0,0,0">
+                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}" FontSize="20" FontAttributes="Bold" Margin="0,0,0,5"/>
+                                    <Label Grid.Row="1" Grid.Column="0" Text="{Binding Lastname, StringFormat='Sobrenome: {0}'}" FontSize="15"/>
+                                    <Label Grid.Row="2" Grid.Column="0" Text="{Binding Age, StringFormat='Idade: {0}'}" FontSize="15"/>
+                                    <Label Grid.Row="3" Grid.Column="0" Text="{Binding Address, StringFormat='Endereço: {0}'}" FontSize="15"/>
+
+                                    <ImageButton Source="editar.png"  Grid.RowSpan="4" Grid.Column="1" Command="{Binding BindingContext.EditarClienteCommand,  Source={x:Reference mainPage}}" CommandParameter="{Binding .}" HorizontalOptions="End" HeightRequest="25" WidthRequest="25" BackgroundColor="RoyalBlue" CornerRadius="5" Margin="0,0,10,0"/>
+                                    <ImageButton Source="excluir.png" Grid.RowSpan="4" Grid.Column="2" Command="{Binding BindingContext.ExcluirClienteCommand, Source={x:Reference mainPage}}" CommandParameter="{Binding .}" HorizontalOptions="End" HeightRequest="20" WidthRequest="20" BackgroundColor="Red"       CornerRadius="5" Margin="0,0,10,0"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Border>
+
+            <Label Text="{Binding TotalClientes, StringFormat='Total de clientes: {0}'}" TextColor="{DynamicResource AzulBTG}" Margin="20,10,0,0" FontSize="Large" HorizontalOptions="Start" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

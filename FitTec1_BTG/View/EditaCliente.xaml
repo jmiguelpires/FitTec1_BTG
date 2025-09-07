@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+           xmlns:behaviors="clr-namespace:FitTec1_BTG.Behaviors"
+           x:Class="FitTec1_BTG.View.EditaCliente"
+           CanBeDismissedByTappingOutsideOfPopup="False"
+           BackgroundColor="Transparent"
+           Margin="0"
+           Padding="0">
+
+    <Border Stroke="{StaticResource AzulBTG}"  StrokeThickness="2" BackgroundColor="White" HeightRequest="500" WidthRequest="600">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="20" />
+        </Border.StrokeShape>
+
+        <ScrollView VerticalScrollBarVisibility="Always">
+            <VerticalStackLayout Padding="20" Spacing="10">
+                <!--Fechar a tela-->
+                <Button Text="X" WidthRequest="30" HeightRequest="30" BackgroundColor="White" BorderColor="{StaticResource AzulBTG}" BorderWidth="2" TextColor="{StaticResource AzulBTG}" CornerRadius="25" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start" Command="{Binding FecharEdicaoCommand}"/>
+
+                <!--Título-->
+                <Label Text="Edição de Cliente" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" TextColor="{StaticResource AzulBTG}" />
+
+                <!--Nome-->
+                <Label Text="Nome" TextColor="{StaticResource AzulBTG}" Margin="2,0,0,-10"/>
+                <Border Stroke="{StaticResource AzulBTG}">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="5" />
+                    </Border.StrokeShape>
+
+                    <Entry Text="{Binding Cliente.Name}" PlaceholderColor="{StaticResource AzulBTG}" />
+                </Border>
+
+                <!--Sobrenome-->
+                <Label Text="Sobrenome" TextColor="{StaticResource AzulBTG}" Margin="2,0,0,-10"/>
+                <Border Stroke="{StaticResource AzulBTG}">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="5" />
+                    </Border.StrokeShape>
+
+                    <Entry Text="{Binding Cliente.Lastname}" PlaceholderColor="{StaticResource AzulBTG}" />
+                </Border>
+
+                <!--Idade-->
+                <Label Text="Idade" TextColor="{StaticResource AzulBTG}" Margin="2,0,0,-10"/>
+                <Border Stroke="{StaticResource AzulBTG}">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="5" />
+                    </Border.StrokeShape>
+
+                    <Entry Text="{Binding Cliente.Age}" PlaceholderColor="{StaticResource AzulBTG}" MaxLength="3">
+                        <Entry.Behaviors>
+                            <behaviors:NumericEntryBehavior />
+                        </Entry.Behaviors>
+                    </Entry>
+                </Border>
+
+                <!--Endereço-->
+                <Label Text="Endereço" TextColor="{StaticResource AzulBTG}" Margin="2,0,0,-10"/>
+                <Border Stroke="{StaticResource AzulBTG}">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="5" />
+                    </Border.StrokeShape>
+
+                    <Entry Text="{Binding Cliente.Address}" PlaceholderColor="{StaticResource AzulBTG}" />
+                </Border>
+
+                <Button Text="EDITAR" HorizontalOptions="Center" Margin="0,10,0,0" Command="{Binding EditarClienteCommand}" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </Border>
+
+</mct:Popup>
